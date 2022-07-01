@@ -10,7 +10,7 @@ import pandas as pd
 import math
 
 
-path = r"C:\Users\Adam Dede\Documents\GitHub\ABmem\data\PPT09_ABstudy_2022-06-29_10h01.10.225.csv"
+path = r"C:\Users\pc1aod\Documents\GitHub\ABmem\data\PPT09_ABstudy_2022-06-29_10h01.10.225.csv"
 
 
 def findT1(trialDat):
@@ -62,13 +62,15 @@ def readDataFile(path):
     for cnd in ABDat['CondType'].unique():
         out[cnd +'_T1'] = np.mean(ABDat.loc[ABDat['CondType'] == cnd, 'T1cor'])
         out[cnd +'_T2'] = np.mean(ABDat.loc[ABDat['CondType'] == cnd, 'T2cor'])
-        out[cnd +'_T2_T1'] = np.mean(ABDat.loc[(ABDat['CondType'] == cnd) & (ABDat['T1cor'] == 1), 'T2cor'])
+        out[cnd +'_T2_T1'] = np.mean(ABDat.loc[ (ABDat['CondType'] == cnd) & (ABDat['T1cor'] == 1), 'T2cor'])
     
-    
+    #maybe add later
+    # out['T1overall'] = np.mean(ABDat['T1cor'])
     
     #get the memory data
     memDat = df[df['TrialType'] == 'Mem']
  
+    #create linkage between memory and attentional blink data
     f = lambda x: refMem2AB(x, ABDat)
     x = memDat.apply(f, axis = 1)
     memDat = pd.concat([memDat,x], axis = 1)
@@ -112,7 +114,8 @@ def readDataFile(path):
     return(out)
     
     
-    
+def add2(x): 
+    return(x+2)
     
     
     
