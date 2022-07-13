@@ -10,7 +10,7 @@ import pandas as pd
 import math
 
 
-path = r"C:\Users\pc1aod\Documents\GitHub\ABmem\data\PPT09_ABstudy_2022-06-29_10h01.10.225.csv"
+path = r"C:\Users\User\OneDrive\Documents\GitHub\ABmem\data\PPT09_ABstudy_2022-06-29_10h01.10.225.csv"
 
 
 def findT1(trialDat):
@@ -102,6 +102,8 @@ def readDataFile(path):
     
     out['targMem'] = np.mean(memDat.loc[(memDat['ABrefType'] != 'distracter') & (memDat['ABrefType'] != 'skip'), 'memCor'])
     out['distMem'] = np.mean(memDat.loc[(memDat['ABrefType'] == 'distracter') | (memDat['ABrefType'] == 'novel'), 'memCor'])
+    out['T1Overall'] = np.mean(memDat.loc[(memDat['ABT1cor'] == 1), 'memCor'])
+    out['T2Overall'] = np.mean(memDat.loc[(memDat['ABT2cor'] == 1), 'memCor'])
     
     for cnd in memDat['ABrefType'].unique():
         if (cnd != 'skip'): 
