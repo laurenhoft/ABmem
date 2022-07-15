@@ -64,8 +64,9 @@ def readDataFile(path):
         out[cnd +'_T2'] = np.mean(ABDat.loc[ABDat['CondType'] == cnd, 'T2cor'])
         out[cnd +'_T2_T1'] = np.mean(ABDat.loc[ (ABDat['CondType'] == cnd) & (ABDat['T1cor'] == 1), 'T2cor'])
     
-    #maybe add later
-    # out['T1overall'] = np.mean(ABDat['T1cor'])
+    #Overall AB for T1
+    out['ABT1overall'] = np.mean(ABDat['T1cor'])
+    out['ABT2overall'] = np.mean(ABDat['T2cor'])
     
     #get the memory data
     memDat = df[df['TrialType'] == 'Mem']
